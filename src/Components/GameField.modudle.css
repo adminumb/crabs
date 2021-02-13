@@ -1,0 +1,35 @@
+.App {
+    text-align: center;
+    font-family: monospace;
+}
+
+h1{
+    font-weight: 500;
+    font-size: 50px;
+
+}
+
+
+.Character {
+    white-space: pre;
+
+}
+.Container{
+    max-width: 1220px;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
+
+
+.Character-current {
+    background-color: yellow;
+}
+
+.Character-out {
+    color: silver;
+
+}
+.Character__items{
+    font-size: 20px;
+}
