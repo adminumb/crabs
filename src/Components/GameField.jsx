@@ -5,6 +5,10 @@ import {useState} from 'react'
 import './GameField.modudle.css'
 import Timer from "./Timer";
 import Results from "./Results";
+import {CountdownCircleTimer} from "react-countdown-circle-timer"
+
+
+
 const initialWords = rand();
 
 const GameField=()=>{
@@ -16,20 +20,25 @@ const GameField=()=>{
 
     const [wordCount, setWordCount] = useState(0)
     const [mistake, setMistake]=useState(0)
+    const [flagTimer, setFlagTimer]=useState(false)
+    const [flagTimerWraper, setFlagTimerWraper]=useState(false)
 
-
-
+//переключалка время/кнопки
+const onSelected=()=>{
+        setFlagTimer(!flagTimer)
+    setFlagTimerWraper(!flagTimerWraper)
+}
 
 
     useKeyPress(key => {
 
         let updatedOutgoingChars = outgoingChars
         let updatedIncomingChars = incomingChars
+                   //начало после запуска таймера
+        if (key === currentChar && flagTimer) {
 
-        if (key === currentChar) {
 
-
-
+           //отстпупы
             if (leftPadding.length > 0) {
                 setLeftPadding(leftPadding.substring(1))
             }
@@ -48,7 +57,7 @@ const GameField=()=>{
 
             setIncomingChars(updatedIncomingChars)
         }
-        if(key!==currentChar) {
+        if(key!==currentChar && flagTimer) {
             setMistake(mistake + 1)
         }
 
@@ -80,9 +89,30 @@ if(result<0)
                 <h3>
                     RESULTS :{result} %
                 </h3>
-                <h3>
-                </h3>
-                <Results  result={result}/>
+                <div className={'Timer'}>
+                    <a className={'Timer__item'} onClick={()=>setFlagTimer(!flagTimer)} >
+                    < CountdownCircleTimer
+                        isPlaying={flagTimer?true:false}
+                        duration={60}
+
+                        colors={[
+                            ['#004777', 0.33],
+                            ['#F7B801', 0.33],
+                            ['#A30000', 0.33],
+                        ]}
+                        size={100}
+                        strokeWidth={20}
+
+                    >
+                        {({ remainingTime }) => remainingTime}
+                    </CountdownCircleTimer>
+                    </a>
+
+                </div>
+
+                <button disabled={flagTimer?true:false} onClick={()=>onSelected()}>START</button>
+                <Results  flagTimer={flagTimer}  result={result}/>
+
             </p>
         </div>
     )

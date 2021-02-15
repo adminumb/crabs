@@ -8,6 +8,43 @@ h1{
     font-size: 50px;
 
 }
+.Timer{
+margin-left: 560px;
+    margin-top: 20px;
+
+}
+button {
+    display: inline-block;
+    background-color: orange;
+    border-radius: 30px;
+    padding: 10px 20px;
+    min-width: 100px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    margin: 10px;
+    font-size: 15px;
+    transition: all .5s;
+    border-bottom: 1px transparent;
+    font-weight: bold;
+
+}
+
+.Timer__item{
+    font-size: 30px;
+    cursor: pointer;
+    font-weight: bold;
+}
+button:hover {
+background-color: darkred;
+    border-bottom: 1px solid #FEFEFE;
+
+}
+
+button:active {
+     transform: translateY(1px);
+ }
 
 
 .Character {

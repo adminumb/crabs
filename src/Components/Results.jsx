@@ -6,16 +6,17 @@ import PageResult from "./PageResult";
 
 
 
-const Results=({result})=>{
+const Results=({result, flagTimer})=>{
 
     const dispatch=useDispatch()
 
     const status= useSelector(({resultReducer})=>resultReducer.data)
-const [flagAlert, setFlagAlert]=React.useState(false)
+const [flagAlert, setFlagAlert]=React.useState(false) // отображение редакса
 
 
 
 
+    //диспатч экшена
     const saveData=(data)=>{
         dispatch(setDataAC(data))
         setFlagAlert(true)
@@ -25,7 +26,7 @@ const [flagAlert, setFlagAlert]=React.useState(false)
     return (
         <div>
 
-            <button onClick={()=>saveData(result)}>SAVE</button>
+            <button  disabled={flagTimer?true:false}  onClick={()=>saveData(result)}>SAVE</button>
 
             {/*{ flagAlert &&*/}
             {/*    console.log(`YOUR RESULT: ${result}, STATUS:${status}`)*/}
